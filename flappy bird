@@ -1,0 +1,33 @@
+import pygame
+from pygame.locals import*
+pygame.init()
+clock = pygame.time.Clock()
+fps = 60
+screen_width = 864
+screen_hight = 936
+screen = pygame.display.set_mode((screen_width, screen_hight))
+ground_scroll = 0
+scrool_speed = 4
+bg = pygame.image.load('assets/back 2.png')
+ground_image = pygame.image.load('assets/back.png')
+flappy1 = pygame.image.load('assets/flappy bird 1.png')
+flappy2 = pygame.image.load('assets/flappy bird 2.png')
+flappy3 = pygame.image.load('assets/flappy bird 3.png')
+images = [flappy1,flappy2,flappy3]
+run = True 
+class Bird(pygame.sprite.Sprite):
+    def __init__(self,x,y):
+        pygame.sprite.Sprite.__init__
+while run:
+    clock.tick(fps)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+        # if it is quit the game
+            pygame.quit()
+    screen.blit(bg,(0,0))
+    screen.blit(ground_image,(ground_scroll, 768))
+    ground_scroll -= scrool_speed
+    if abs(ground_scroll) > 35:
+        ground_scroll = 0
+    pygame.display.update()
+    
